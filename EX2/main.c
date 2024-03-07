@@ -3,7 +3,7 @@
 int main(){
     FILE* fp;
     int awrite[3]={0,1,2};
-    int aread[5];
+    int aread[3];
     char bwrite[3]="ABC";
     char bread[4];
     float cwrite[3]={1.1,1.2,1.3};
