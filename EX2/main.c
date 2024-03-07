@@ -19,7 +19,7 @@ int main(){
     printf("\n");
     fclose(fp);
     
-    fp=fopen("a.bin","w+");
+    fp=fopen("a.bin","wb+");
     fwrite(bwrite,sizeof(char),3,fp);
     fseek(fp,0,SEEK_SET);
     fread(bread,sizeof(char),3,fp);
@@ -29,7 +29,7 @@ int main(){
     printf("\n");
     fclose(fp);
     
-    fp=fopen("a.bin","w+");
+    fp=fopen("a.bin","wb+");
     fwrite(cwrite,sizeof(float),3,fp);
     fseek(fp,0,SEEK_SET);
     fread(cread,sizeof(float),3,fp);
