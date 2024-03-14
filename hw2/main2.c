@@ -5,7 +5,20 @@ int main() {
     FILE* fp_destination;
     char buffer[1000]; // 假設程式碼不會超過1000字元
 
- 
+    // 打開自己的程式碼檔案
+    fp_source = fopen(__FILE__, "r");
+    if (fp_source == NULL) {
+        perror("無法打開程式碼檔案");
+        return 1;
+    }
+
+    // 打開目標檔案
+    fp_destination = fopen("main2.txt", "w");
+    if (fp_destination == NULL) {
+        perror("無法打開目標檔案");
+        return 1;
+    }
+
     // 從程式碼檔案讀取數據，並寫入到目標檔案
     while (fgets(buffer, sizeof(buffer), fp_source) != NULL) {
         fputs(buffer, fp_destination);
