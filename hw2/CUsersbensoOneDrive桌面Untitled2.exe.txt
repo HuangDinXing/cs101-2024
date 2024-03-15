@@ -1,0 +1,4 @@
+4 int main() {
+--------------------------------
+Process exited after 0.04611 seconds with return value 0
+請按任意鍵繼續 . . .
