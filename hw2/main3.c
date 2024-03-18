@@ -2,23 +2,33 @@
 #include <string.h>
 
 int main() {
-    FILE* fp_source;
-    int count = 0;
-    char buffer[100];
-    fp_source = fopen(__FILE__, "r");
+    FILE *inputFile, *outputFile;
+    char line[1000];
+    int lineNumber = 0;
+    int mainLineNumber = 0;
 
-    while (fgets(buffer, sizeof(buffer), fp_source) != NULL) {
-      //  if (strstr(buffer, "int main() {\n") != 0) {
-            count++;
-    //}
-        if (strstr(buffer, "int main() {\n") != 0) {
-            printf("%d int main() {", count);
+    inputFile = fopen("main3.c", "r");
+    if (inputFile == NULL) {
+        return 1;
+    }
+
+    while (fgets(line, sizeof(line), inputFile)) {
+        lineNumber++;
+        if (strstr(line, "int main()")) {
+            mainLineNumber = lineNumber;
             break;
         }
     }
 
-    // 關閉檔案
-    fclose(fp_source);
+    outputFile = fopen("main3.txt", "w");
+    if (outputFile == NULL) {
+        return 1;
+    }
+
+    fprintf(outputFile, "%d", mainLineNumber);
+
+    fclose(inputFile);
+    fclose(outputFile);
 
     return 0;
 }
