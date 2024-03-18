@@ -1,34 +1,25 @@
 #include <stdio.h>
 
 int main() {
-    FILE* fp_source;
-    FILE* fp_destination;
-    char buffer[1000]; // 假設程式碼不會超過1000字元
+    FILE *inputFile, *outputFile;
+    char ch;
 
-    // 打開自己的程式碼檔案
-    fp_source = fopen(__FILE__, "r");
-    if (fp_source == NULL) {
-        perror("無法打開程式碼檔案");
+    inputFile = fopen("main2.c", "r");
+    if (inputFile == NULL) {
         return 1;
     }
 
-    // 打開目標檔案
-    fp_destination = fopen("main2.txt", "w");
-    if (fp_destination == NULL) {
-        perror("無法打開目標檔案");
+    outputFile = fopen("main2.txt", "w");
+    if (outputFile == NULL) {
         return 1;
     }
 
-    // 從程式碼檔案讀取數據，並寫入到目標檔案
-    while (fgets(buffer, sizeof(buffer), fp_source) != NULL) {
-        fputs(buffer, fp_destination);
+    while ((ch = fgetc(inputFile)) != EOF) {
+        fputc(ch, outputFile);
     }
 
-    // 關閉檔案
-    fclose(fp_source);
-    fclose(fp_destination);
-
-    printf("程式碼已成功寫入到 main2.txt 中。\n");
+    fclose(inputFile);
+    fclose(outputFile);
 
     return 0;
 }
